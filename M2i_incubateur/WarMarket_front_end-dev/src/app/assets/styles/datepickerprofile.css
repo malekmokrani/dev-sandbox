@@ -1,0 +1,11 @@
+/*
+    overried dist style  
+    
+    */
+    .react-datepicker__input-container{
+      
+        width:50%!important;
+        margin: auto;
+        display: block!important;
+       
+    }
