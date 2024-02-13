@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block content %}
+<div style="width:50%;margin:auto;margin-top:125px;padding:10px;border:1px solid #CCCCCC">
+ {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error  }}
+        </div>
+    {%  endif %}
+{{ form(form) }}
+</div>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+
+
+
+{% block content %}
+
+{# {% dump upcoming.results %} #}
+
+<div class="d-flex flex-wrap col-12" >
+    	{% include 'partials/grid.html.twig'   with { 'results':upcoming.results }%}
+</div>
+{% endblock %}

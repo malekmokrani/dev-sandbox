@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block content %}
+ {% for info in  actor_info %}
+
+    {# {% dump info %} #}
+
+   
+    <h2 >{{info.primaryName}} </h2>
+    {% if info.birthYear != '\\N' %}
+    <p >Né en {{info.birthYear }}
+    {% endif %}
+   {% if info.deathYear != '\\N' %}
+         Décédé en  {{info.deathYear}}
+   {% endif %}
+  
+    </p>
+
+    
+
+   {% endfor %}
+
+    {# {% dump filmo %} #}
+   {% for movie in  movies["results"] %}
+   <p >
+   <a href="/title/{{movie.id}}"> {{  loop.index  }} - {{movie.titleText["text"]}} </a><br>
+   {% dump movie %}
+     </p>
+   {% endfor %}
+
+{% endblock %}

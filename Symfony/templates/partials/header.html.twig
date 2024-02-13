@@ -1,0 +1,33 @@
+<header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">MoviesBlog</a>
+                </div>
+                <form action="/search" method="GET" class="inner-form">
+                    <div class="input-field d-flex ">
+                        <input class="form-control" name="query" type="text" style="width:500px;"
+                                placeholder="Effectuer une recherche de film ou serie par mots clefs" />
+                        <button id="btnSearch" class="btn-search" type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+                <div class="d-flex">
+                    {% if is_granted('ROLE_USER') %} 
+                    <a href="#" class="text-black text-decoration-none">{{ app.user.email }}
+                    <button type="button" class="btn btn-outline-dark" onclick="location.href='/logout'">Déconnection</button>
+                    {% else %}
+                    <button type="button" class="btn btn-outline-dark" onclick="location.href='/signup'">Créer un compte</button>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-outline-dark" onclick="location.href='/signin'">Connectez vous</button>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+   
+  </header>
+  

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+ 
+  {% if search.results|length > 0 %}
+      <h3>Résultat de la recherche</h3>
+      <div class="d-flex flex-wrap col-12" >
+    	
+        {% include 'partials/grid.html.twig'   with { 'results':search.results }%}
+        
+      </div>
+      
+  {% else %}
+
+    <h2  class="text-center">Aucun résultat !</h2>
+
+  {% endif %}
+
+
+{% endblock %}

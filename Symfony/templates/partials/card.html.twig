@@ -1,0 +1,39 @@
+
+{% if item["primaryImage"] is null %}
+    {% set imgUrl="images/empty.jpg" %}
+{% else %}
+    {% set imgUrl=item["primaryImage"]["url"] %}
+{% endif %}
+
+
+<div class="card d-flex m-2" style="width: 18rem;height:550px">
+    <a href="/title/{{item.id}}">
+        <img src="{{imgUrl}}" class="card-img-top" alt="{{item["titleText"]["text"]}}"  />
+   </a>
+  <div class="card-body">
+    <h5 class="card-title">{{item["titleText"]["text"]}}</h5>
+    <p class="card-text">
+        {% if item["genres"]   is  defined  %}
+            {{item.genres["genres"][0]["text"]}} ({{item["titleType"]["text"]}})
+        {% endif %}</p>
+            {% if item["releaseDate"] is  defined %}
+        {% endif %}
+    </p>
+    
+    {% if item["releaseDate"] is defined %}
+    <p class="h6 text-muted text-end">
+        En salle le
+         {% if item["releaseDate"]["day"] is defined %} 
+            {{item["releaseDate"]["day"]}} /
+         {% endif %}
+         {% if item["releaseDate"]["month"] is defined %} 
+            {{item["releaseDate"]["month"]}} /
+         {% endif %}
+         {% if item["releaseDate"]["year"] is defined %} 
+            {{item["releaseDate"]["year"]}}
+         {% endif %}
+    </p>
+   {% endif %}
+  </div>
+</div>
+

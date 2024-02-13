@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+
+<main class="form-signin col-6 m-auto mt-5">
+  <form ation="{{ path('app_security_signin')}}" method="post">
+   
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    {% for message in app.flashes('success') %}
+			<div class="alert alert-success mt-4">
+				{{ message }}
+			</div>
+		{% endfor %}
+     {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error.messageKey | trans(error.messageData , 'security') }}
+        </div>
+    {%  endif %}
+    <div class="form-floating">
+    
+    
+      <input  type="email" class="form-control" id="floatingInput" 
+              placeholder="Email" name="_username" value="">
+      
+      <label for="floatingInput">User name</label>
+    
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="_password" value="">
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+  
+  </form>
+</main>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+  {% block title %}MoviesBlog !  {{custom_info["results"].titleText["text"]}} {% endblock %}
+{% block content %}    
+   {% dump custom_info %} 
+{% for info in  custom_info %}
+
+    {# {% dump info %}  #}
+   
+    <div class="container">
+        <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary d-flex">
+            <div class="col-lg-8 px-0">
+                <h1 class="display-4 fst-italic">{{info.titleText["text"]}}</h1>
+                {% if  info.principalCast |length %}
+                <p class="text-center">Avec : 
+                    {% for prop in  info.principalCast[0] %}
+                        {% for value in  prop %}
+                            <span class="font-weight-bold hover"> <a href="/actors/{{value["name"].id }}" >{{value["name"].nameText["text"]}} </a> &nbsp;-&nbsp;</span>
+                        {% endfor %}
+                    {% endfor %}
+                </p>
+                {% endif %}
+                <p class="lead my-3">
+                    {% if info.plot != null %}
+                        {{info.plot['plotText']["plainText"] }}
+                    {% endif %}
+                </p>
+                <h5 class="text-center"> Genre : {{info.genres["genres"][0]["text"]}} -  {{info.titleType["text"]}}   - ({{info.releaseYear["year"]|default('')}} ) </h5>
+            
+            </div>
+            <div class="col-lg-6 px-0"> 
+                <div style="width: 400px;height: 400px;">
+                    <img src="{{ info.primaryImage["url"]|default('/images/empty.jpg') }}" style="width: 100%;height: 100%;object-fit: contain;"/>
+                </div>
+            </div>
+        </div>
+
+        
+       
+          <div class="col-md-6 post-content" data-aos="fade-up">
+            {# ###########################
+                    Comments Box
+            ########################### #}
+                {% if is_granted('ROLE_USER') %}
+                    {{ form(form) }}
+                {% else %}
+                <button type="button" class="btn btn-outline-dark" onclick="location.href='/signin'">Connectez vous</button>
+                <button type="button" class="btn btn-outline-dark" onclick="location.href='/signup'">créer un compte laisser un commentaire</button>
+                   
+                {% endif %}
+            {# ###########################
+                      Comments msg
+             ########################### #}
+                {# {% dump comments %} #}
+                {% for comment in comments %}
+                <hr>
+                    <div style="border:1px solid white;margin-bottom:3px;padding:5px">
+                        <span>{{comment.getIdUser().email}}</span> - <span>{{ comment.getCreatedAt()|date('Y-m-d h:m:s')}}</span>
+                            <p class="m-3">{{comment.content}}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+   {% endfor %}
+        
+    </div>
+{% endblock %}
