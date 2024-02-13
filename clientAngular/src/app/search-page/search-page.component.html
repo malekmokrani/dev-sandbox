@@ -1,0 +1,32 @@
+<div class="container row mt-4 d-flex justify-content-center align-items-center m-auto" >
+   
+    <div>
+        <form action="/search" method="get" [formGroup]="searchForm" class="mb-4">
+            <input name="keywords" placeholder="Search something" (keyup)="onKeyUp()" formControlName="keywords"
+                class="form-control form-input" type="text" />
+        </form>
+
+       
+            <div *ngFor="let movie of results">
+              
+                <div class="row">
+                <div class="col-sm-2">
+                    
+                    <a href="/movie/{{movie.id}}">
+                        <img  src="{{movie.poster_path}}" class="img-thumbnail" alt="Affiche du film : {{movie.title}}">
+                    </a>
+                </div>
+                <div class="col-sm-6">
+                    <h4 class=""><a  href="/movie/{{movie.id}}" class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover">{{movie.title}}</a></h4>
+                    <p class="info">{{movie.release_date}}</p>
+                    <p class="description">{{movie.overview}}</p>
+                </div>
+                 </div>
+            </div>
+       
+        
+        
+    </div>
+    <!-- #Footer utilisé pour optenir les resultat suivants en fin de page -->
+    <div   class="row" #footer>&nbsp;</div>
+</div>

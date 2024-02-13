@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="m-4">
+        <form action="/" method="get">
+            <input name="keywords" placeholder="Search something" class="form-control form-input" type="text" />
+        </form>
+
+        <div>
+
+            <div *ngIf="movie!=null && movie!=undefined">
+                <h1 class="m-2">{{movie.title}}</h1>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img class="img-fluid " src="{{movie.poster_path}}">
+
+                    </div>
+                    <div class="col-sm-8">{{movie.overview}}</div>
+                    <div class="w-50 m-auto mt-5">
+                        <img class="img-fluid " src="{{movie.backdrop_path}}" />
+                    </div>
+                </div>
+
+                <h4>Casting</h4>
+                <hr>
+                <div *ngFor="let actor of movie.cast" class="col-lg-4">
+                    <div class="row mt-4">
+                        <div class="col-sm-4">
+                            <img src="{{actor.profile_path}}" class="rounded-circle"
+                                style="height: 100px; width: auto;">
+                        </div>
+                        <div class="col-sm-4">
+                            <h2> {{ actor.name }}</h2>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
